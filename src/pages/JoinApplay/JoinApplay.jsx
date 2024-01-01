@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AtuhContext } from '../../Authprovaider/Authprovaider';
+import toast from 'react-hot-toast';
 
 const JoinApplay = () => {
   const { user } = useContext(AtuhContext);
@@ -28,7 +29,9 @@ const JoinApplay = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        if (data.insertedId) {
+          toast.success('Event join success');
+        }
       });
   };
 

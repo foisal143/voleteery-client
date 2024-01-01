@@ -4,6 +4,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithPopup,
+  signOut,
 } from 'firebase/auth';
 import app from '../firebase/firebase';
 export const AtuhContext = createContext(null);
@@ -17,6 +18,10 @@ const Authprovaider = ({ children }) => {
   const signInWithGoogle = () => {
     setloader(true);
     return signInWithPopup(auth, googleProvaider);
+  };
+
+  const logout = () => {
+    return signOut(auth);
   };
 
   useEffect(() => {
@@ -43,6 +48,7 @@ const Authprovaider = ({ children }) => {
     user,
     loader,
     signInWithGoogle,
+    logout,
   };
   return (
     <AtuhContext.Provider value={authInfo}>{children}</AtuhContext.Provider>

@@ -5,7 +5,7 @@ import EventCart from '../../comoponents/EventCart/EventCart';
 import toast from 'react-hot-toast';
 
 const EventPage = () => {
-  const { user } = useContext(AtuhContext);
+  const { user, logout } = useContext(AtuhContext);
   const [events, setEvents] = useState([]);
   const url = `http://localhost:5000/apply-events?email=${user?.email}`;
 
@@ -52,9 +52,13 @@ const EventPage = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setEvents(data);
+        if (!data.error) {
+          setEvents(data);
+          return;
+        }
+        logout().then().catch();
       });
-  }, [url]);
+  }, [url, logout]);
 
   return (
     <>

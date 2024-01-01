@@ -18,7 +18,7 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/volentars'),
+        loader: () => fetch('http://localhost:5000/total-events'),
       },
       {
         path: 'join-event/:id',
